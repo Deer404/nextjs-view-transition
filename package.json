@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "description": "NextJS View transition component",
-  "main": "dist/src/index.js",
-  "module": "dist/src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "build:tsup": "tsup src/index.ts -d dist --format esm,cjs"
   },
   "keywords": [
     "nextjs",
@@ -25,14 +26,14 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
+    "@swc/core": "^1.7.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18",
-    "next": "^14.2.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "rollup": "^4.19.0",
-    "typescript": "^5.5.4",
-    "rollup-preserve-directives": "^1.1.1"
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-preserve-directives": "^1.1.1",
+    "tsup": "^8.2.3",
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "next": "^14.2.5",
