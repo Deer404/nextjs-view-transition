@@ -1,15 +1,14 @@
 import typescript from "@rollup/plugin-typescript";
-import preserveDirectives from "rollup-plugin-preserve-directives";
+import preserveDirectives from "rollup-preserve-directives";
 
 export default {
   input: "src/index.ts",
   output: [
     {
-      dir: "dist",
+      file: "dist/index.js",
       format: "esm",
-      preserveModules: true,
     },
   ],
-  plugins: [preserveDirectives(), typescript()],
+  plugins: [preserveDirectives(), typescript({ tsconfig: "tsconfig.json" })],
   external: ["react", "react-dom"],
 };

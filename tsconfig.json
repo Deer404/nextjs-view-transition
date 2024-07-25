@@ -6,6 +6,7 @@
     "jsx": "react",
     "declaration": true,
     "declarationDir": "dist",
+    "emitDeclarationOnly": true,
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
