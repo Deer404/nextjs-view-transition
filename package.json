@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "bunchee"
+    "build": "rollup -c"
   },
   "keywords": [
     "nextjs",
@@ -24,9 +24,16 @@
   "author": "Deer404",
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18",
-    "bunchee": "^5.2.2",
+    "glob": "^11.0.0",
+    "magic-string": "^0.30.10",
+    "rollup": "^4.19.0",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-dts": "^6.1.1",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {

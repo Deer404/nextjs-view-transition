@@ -4,14 +4,14 @@
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "jsx": "react",
-    "declaration": true,
-    "declarationDir": "dist",
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "./src",
+    "outDir": "./dist"
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
