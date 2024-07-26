@@ -1,6 +1,6 @@
 {
   "name": "nextjs-view-transition",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "description": "NextJS View transition component",
   "main": "dist/src/index.js",
