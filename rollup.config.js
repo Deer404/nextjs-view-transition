@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import autoExternal from "rollup-plugin-auto-external";
 import dts from "rollup-plugin-dts";
+import tslib from "tslib";
 import {
   multiEntry,
   preserveDirectives,
@@ -26,7 +27,7 @@ const jsConfig = {
     }),
     resolve(),
     commonjs(),
-    typescript({ tsconfig: "./tsconfig.json" }),
+    typescript({ tsconfig: "./tsconfig.json", tslib: tslib }),
   ],
   external: [/node_modules/], // 将 node_modules 中的所有模块都视为外部依赖
 };
