@@ -4,7 +4,6 @@
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "jsx": "react",
-    "declaration": true,
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
