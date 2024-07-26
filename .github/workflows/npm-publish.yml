@@ -3,6 +3,15 @@ name: Build and Publish Node.js Package
 on:
   release:
     types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version (e.g., 1.0.0)'
+        required: true
+      tag:
+        description: 'npm tag (e.g., latest, beta)'
+        required: true
+        default: 'latest'
 
 jobs:
   build-and-publish:
@@ -29,7 +38,19 @@ jobs:
     - name: Build Package
       run: pnpm run build
 
-    - name: Publish to npm
+    - name: Update package version
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        npm version ${{ github.event.inputs.version }} --no-git-tag-version
+
+    - name: Publish to npm (Release)
+      if: github.event_name == 'release'
       run: pnpm publish --no-git-checks
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+    - name: Publish to npm (Manual)
+      if: github.event_name == 'workflow_dispatch'
+      run: pnpm publish --no-git-checks --tag ${{ github.event.inputs.tag }}
       env:
         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
