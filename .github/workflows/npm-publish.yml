@@ -5,52 +5,44 @@ on:
     types: [created]
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Package version (e.g., 1.0.0)'
-        required: true
       tag:
-        description: 'npm tag (e.g., latest, beta)'
+        description: "npm tag (e.g., latest, beta)"
         required: true
-        default: 'latest'
+        default: "latest"
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-        cache: 'pnpm'
-        registry-url: 'https://registry.npmjs.org'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
 
-    - name: Install dependencies
-      run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-    - name: Build Package
-      run: pnpm run build
+      - name: Build Package
+        run: pnpm run build
 
-    - name: Update package version
-      if: github.event_name == 'workflow_dispatch'
-      run: |
-        npm version ${{ github.event.inputs.version }} --no-git-tag-version
+      - name: Publish to npm (Release)
+        if: github.event_name == 'release'
+        run: pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-    - name: Publish to npm (Release)
-      if: github.event_name == 'release'
-      run: pnpm publish --no-git-checks
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-
-    - name: Publish to npm (Manual)
-      if: github.event_name == 'workflow_dispatch'
-      run: pnpm publish --no-git-checks --tag ${{ github.event.inputs.tag }}
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Publish to npm (Manual)
+        if: github.event_name == 'workflow_dispatch'
+        run: pnpm publish --no-git-checks --tag ${{ github.event.inputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

@@ -1,6 +1,6 @@
 {
   "name": "nextjs-view-transition",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "description": "NextJS View transition component",
   "main": "dist/src/index.js",
@@ -36,15 +36,15 @@
   "author": "Deer404",
   "license": "MIT",
   "devDependencies": {
-    "@deer404/rollup-collection-plugin": "^1.0.2",
+    "@deer404/rollup-collection-plugin": "^1.0.3",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/react": "^18.3.3",
-    "@types/react-dom": "^18",
+    "@types/react-dom": "^18.3.0",
     "glob": "^11.0.0",
     "magic-string": "^0.30.10",
-    "rollup": "^4.19.0",
+    "rollup": "^4.19.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-dts": "^6.1.1",
     "typescript": "^5.5.4"
