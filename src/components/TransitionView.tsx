@@ -4,7 +4,7 @@ import { useLayoutEffect, useState } from "react";
 import { useBrowserNativeTransitions } from "../libs/useBrowserNativeTransitions";
 import React from "react";
 import { VoidCallback } from "../types";
-import { ViewTransitionsContext } from "../libs/context";
+import { ViewTransitionProvider } from "../libs/context";
 
 export function ViewTransitions({
   children,
@@ -26,8 +26,8 @@ export function ViewTransitions({
   useBrowserNativeTransitions();
 
   return (
-    <ViewTransitionsContext.Provider value={setFinishViewTransition}>
+    <ViewTransitionProvider value={setFinishViewTransition}>
       {children}
-    </ViewTransitionsContext.Provider>
+    </ViewTransitionProvider>
   );
 }
